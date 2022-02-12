@@ -8,11 +8,24 @@ function getInputValue(inputId) {
 };
 
 function updateTotalField(totalFieldId, amount) {
-    debugger;
+    // debugger;
     const totalElement = document.getElementById(totalFieldId);
     const totalText = totalElement.innerText;
     const previousTotal = parseFloat(totalText);
     totalElement.innerText = previousTotal + amount;
+}
+
+function updateBalance(depositAmount, isAdd) {
+    const balanceTotal = document.getElementById('balance-total');
+    const balanceTotalText = balanceTotal.innerText;
+    const previousBalanceTotal = parseFloat(balanceTotalText);
+
+    if (isAdd == true) {
+        balanceTotal.innerText = previousBalanceTotal + depositAmount;
+    }
+    else {
+        balanceTotal.innerText = previousBalanceTotal - depositAmount;
+    }
 }
 
 
@@ -32,11 +45,14 @@ document.getElementById('deposit-button').addEventListener('click', function () 
     depositTotal.innerText = previousDepositTotal + depositAmount; */
     updateTotalField('deposit-total', depositAmount);
     //update balance
+    /*
     const balanceTotal = document.getElementById('balance-total');
     const balanceTotalText = balanceTotal.innerText;
     const previousBalanceTotal = parseFloat(balanceTotalText);
 
     balanceTotal.innerText = previousBalanceTotal + depositAmount;
+    */
+    updateBalance(depositAmount, true);
 
     //clear input field
     // depositInput.value = '';
@@ -58,12 +74,13 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     updateTotalField('withdraw-total', withdrawAmount);
 
     // update balance after withdrawal
-    const balanceTotal = document.getElementById('balance-total');
-    const balanceTotalText = balanceTotal.innerText;
-    const previousBalanceTotal = parseFloat(balanceTotalText);
+    /*  const balanceTotal = document.getElementById('balance-total');
+     const balanceTotalText = balanceTotal.innerText;
+     const previousBalanceTotal = parseFloat(balanceTotalText);
+ 
+     balanceTotal.innerText = previousBalanceTotal - withdrawAmount; */
 
-    balanceTotal.innerText = previousBalanceTotal - withdrawAmount;
-
+    updateBalance(withdrawAmount, false);
     // //clear withdraw box
     // withDrawInput.value = '';
 })
